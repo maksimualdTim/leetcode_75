@@ -3,29 +3,28 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(reverseVowels("leetcode"))
+	fmt.Println(reverseVowels("IceCreAm"))
 }
 
 func reverseVowels(s string) string {
-	vowels := []byte{}
-	result := []byte{}
+	start := 0
+	end := len(s) - 1
+	arr := []byte(s)
 
-	for i := range s {
-		if isVowel(s[i]) {
-			vowels = append(vowels, s[i])
+	for start < end {
+		if isVowel(arr[start]) && isVowel(arr[end]) {
+			arr[start], arr[end] = arr[end], arr[start]
+			start++
+			end--
+		}
+		if !isVowel(arr[start]) {
+			start++
+		}
+		if !isVowel(arr[end]) {
+			end--
 		}
 	}
-
-	currentVowelIndex := len(vowels) - 1
-	for i := range s {
-		if isVowel(s[i]) {
-			result = append(result, vowels[currentVowelIndex])
-			currentVowelIndex--
-		} else {
-			result = append(result, s[i])
-		}
-	}
-	return string(result)
+	return string(arr)
 }
 
 func isVowel(r byte) bool {
