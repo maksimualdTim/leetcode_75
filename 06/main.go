@@ -8,14 +8,12 @@ import (
 
 func main() {
 	fmt.Println(reverseWords("the sky is blue"))
+	fmt.Println(reverseWords("  hello world  "))
+	fmt.Println(reverseWords("a good   example"))
 }
 func reverseWords(s string) string {
 	splited := strings.Fields(s)
 	slices.Reverse(splited)
 
-	result := ""
-	for _, word := range splited {
-		result += word + " "
-	}
-	return strings.TrimSpace(result)
+	return strings.Join(splited, " ")
 }
